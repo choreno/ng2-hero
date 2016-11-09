@@ -3,13 +3,25 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Module
+import { AppRoutingModule } from './router/app-routing.module';
+import  './rxjs/rxjs.extensions';
+
+// Components
 import { AppComponent } from './app.component';
 import { HeroComponent } from './hero/hero.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component'
-import { HeroService } from './hero/services/hero.service';
-
-import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+//Service
+import { HeroService } from './services/hero.service';
+
+
+//InMemory
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api'; 
+import {InMemoryDataService} from './services/in-memory-data-service';
+import { HeroSearchComponent } from './hero-search/hero-search.component';
+
 
 @NgModule({
 
@@ -18,35 +30,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeroDetailComponent,
     HeroComponent,
     HeroDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot([
-
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch : 'full' //?? what is this ??
-      },
-      {
-        path: 'heroes',
-        component: HeroComponent
-      },
-      {
-        path:'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'detail/:id',
-        component: HeroDetailComponent
-
-      }
-
-    ])
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
 
   providers: [HeroService],

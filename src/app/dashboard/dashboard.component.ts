@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero/hero';
-import { HeroService } from '../hero/services/hero.service';
+import { HeroService } from '../services/hero.service';
 
 @Component({
 
-  //moduleId: module.id,  //?? set the module-relative loading of the templateUrl ??
+  //moduleId: module.id,  //?? set the module-relative loading of the templateUrl ?? does not need if you user WebPack, will control automatically moduleId
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
